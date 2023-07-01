@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +15,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmitForm(f:NgForm){
+    console.log('Valores del from',f.value);
+    console.log('Mi fromulario',f);
   }
   
 }
