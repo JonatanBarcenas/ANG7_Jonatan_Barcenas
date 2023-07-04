@@ -18,18 +18,18 @@
     <!-- Email input -->
     <mat-form-field appearance="outline" class="col-md-12 mb-4">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="pat@example.com" formControlName="email">
+      <input type="email" matInput placeholder="pat@example.com" formControlName="email">
     </mat-form-field>
 
     <!-- Password input -->
     <mat-form-field appearance="outline" class="col-md-12 mb-4">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="your password" formControlName="password">
+      <input type="password" matInput placeholder="your password" formControlName="password">
     </mat-form-field>
 
 
     <!-- Submit button -->
 
-    <button type="submit" mat-raised-button class="col-md-12" color="primary">{{isSignUp ? 'Sign up' : 'Sign in'}}</button>
+    <button type="submit" mat-raised-button class="col-md-12" color="primary" [disabled]="formUser.invalid">{{isSignUp ? 'Sign up' : 'Sign in'}}</button>
 
   </form>

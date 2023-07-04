@@ -1,31 +1,49 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnChanges {
 
-  @Input() isSignUp: boolean = true;
+  @Input() isSignUp!: boolean;
 
   formUser!: FormGroup;
+
+  defaultFields = {
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password:new FormControl('', Validators.required)
+  }
+
+  extraFields = {
+    name:new FormControl(''), 
+    lastName:new FormControl(''), 
+  }
 
   constructor(
     private fb:FormBuilder
   ){
-    this.initForm();
+    
   }
 
-  initForm(){
-    this.formUser = this.fb.group({
-      name:[''], 
-      lastName:[''], 
-      email:['', Validators.required],
-      password:['']
-    })
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    this.initForm();
   }
+  
+  initForm(){
+    let userFields = {...this.defaultFields}
+    if(this.isSignUp){
+      userFields = {...userFields, ...this.extraFields}
+    }
+    this.formUser = this.fb.group(
+      userFields
+    )
+  }
+
+ 
 
   ngOnInit(): void {
   }
