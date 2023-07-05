@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginFormComponent implements OnInit, OnChanges {
 
   @Input() isSignUp!: boolean;
+  @Output() responseForm: EventEmitter<any> = new EventEmitter();
 
   formUser!: FormGroup;
 
@@ -32,7 +33,7 @@ export class LoginFormComponent implements OnInit, OnChanges {
     console.log(changes);
     this.initForm();
   }
-  
+
   initForm(){
     let userFields = {...this.defaultFields}
     if(this.isSignUp){
@@ -49,12 +50,7 @@ export class LoginFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(){
-    if(this.formUser.invalid)
-    {
-      alert("Debe ingresar todos los inputs");
-      return;
-    }
-    console.log("Form Submitted!", this.formUser.value);
+    this.responseForm.emit(this.formUser);
   }
   
 }

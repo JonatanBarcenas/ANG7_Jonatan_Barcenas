@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SignUpComponent {
 
+  respForm(response: any){
+    console.log('Respuesta desde sign Un', response);
+  }
 }
