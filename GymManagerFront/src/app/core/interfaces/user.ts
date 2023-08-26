@@ -14,6 +14,7 @@ export interface SignIn {
     password: string;
 }
 
-export interface SignUp {
-
+export interface SignInResponse{
+    title: string;
+    status: number;
 }
