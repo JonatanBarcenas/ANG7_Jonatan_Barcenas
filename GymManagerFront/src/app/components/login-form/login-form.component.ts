@@ -51,7 +51,7 @@ export class LoginFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit(){
-    this.responseForm.emit(this.formUser);
+    this.responseForm.emit(this.formUser.value);
   }
   
 }
