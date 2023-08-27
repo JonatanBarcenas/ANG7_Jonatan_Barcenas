@@ -17,8 +17,11 @@ export class SignInComponent {
     ) { }
 
   respForm(request: SignIn){
-    this.login.SignIn(request).subscribe((response: SignInResponse) => {
-      if(response.title === 'Authorized'){
+    this.login.SignIn(request).subscribe((response) => {
+      if(response.hasError){
+        alert(response.message);
+      }
+      if(response.message === 'Authorized'){
         environment.hasSession = true;
         this.router.navigate(['/home']);
       }
