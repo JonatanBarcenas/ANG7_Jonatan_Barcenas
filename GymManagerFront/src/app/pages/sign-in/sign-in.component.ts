@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SignIn, SignInResponse } from 'src/app/core/interfaces/user';
 import { AccountService } from 'src/app/core/services/account.service';
+import { SwalAlertService } from 'src/app/core/services/swal-alert.service';
 import { environment } from 'src/app/environments/environment';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -13,18 +15,22 @@ export class SignInComponent {
 
   constructor(
     private login: AccountService,
-    private router: Router
+    private router: Router,
+    private alerts: SwalAlertService
     ) { }
 
   respForm(request: SignIn){
-    this.login.SignIn(request).subscribe((response) => {
+    this.login.SignIn(request).subscribe((response: any) => {
       if(response.hasError){
-        alert(response.message);
+        this.alerts.errorAlert('Usuario o contraseña incorrecto, favor de validar sus credenciales', 'Error!')
+       // alert(response.message);
       }
       if(response.message === 'Authorized'){
         environment.hasSession = true;
         this.router.navigate(['/home']);
       }
-    })
+   
+    }, (error: any) => console.log(error));
+    
   }
 }

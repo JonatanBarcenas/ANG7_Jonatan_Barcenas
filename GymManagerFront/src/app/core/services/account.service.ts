@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SignIn, User } from '../interfaces/user';
 import { ResponseModel } from '../interfaces/response-model';
+import { SwalAlertService } from './swal-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,24 @@ export class AccountService {
     })
   }
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private alertS: SwalAlertService
+    ) { }
 
   errorHandler(error: HttpErrorResponse){
+    console.log(error)
+    this.alertS.errorAlert('Lo sentimos error detectado, favor de validar mas tarde','Error inesperado!')
     let errorMessage = `Error Code: ${error.status}`
-    if(error.status != 200){
+    if(error.status == 404){
+      
       errorMessage = `${errorMessage} \n message: ${error.error.message}`
     }
    if(error.error.hasError && error.status == 200){
       errorMessage = `message: ${error.error.message}`
     
    }
-    return throwError(errorMessage)
+    return throwError(() => new Error(errorMessage))
   }
 
   SignIn(request: SignIn): Observable<ResponseModel<any>>{
