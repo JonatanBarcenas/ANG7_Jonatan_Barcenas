@@ -1,0 +1,108 @@
+
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-custom-teal-700" >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/sign-in">Mi inventario 2023</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading1">Informacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#carouselExampleCaptions">Proyectos</a>
+          </li>
+          
+        </ul>
+      </div>
+      <div class="col-4 text-end">
+        <button class="btn btn-primary" (click)="mostrarInfo('correo')">Mostrar Correo</button>
+        <button class="btn btn-primary" (click)="mostrarInfo('github')">Mostrar GitHub</button>
+      </div>
+      <p id="email" [style.display]="mostrarCorreo ? 'block' : 'none'">l21650344@zitacuaro.tecnm.mx</p>
+      <p id="github" [style.display]="mostrarGitHub ? 'block' : 'none'">GitHub: <a href="https://github.com/JonatanBarcenas" target="_blank">https://github.com/JonatanBarcenas</a></p>
+      
+    </div>
+    
+  </nav>
+
+  
+  <div data-bs-spy="scroll" data-bs-target="navbar" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    
+    <div id="main">
+      
+        
+
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+          <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+              <img id="imagen" src="https://fondosmil.com/fondo/11760.jpg" class="col-4" style="width: 500px; height: 300px; padding-left: 10%; padding-top: 1%;">
+              <h1 class="display-1 text-center" style="padding: 5%;">JONATAN ISAI BARCENAS VELAZQUEZ</h1>
+          
+              <div class="text-center text">
+                <h3 id="scrollspyHeading1 text-center">INFORMACIÓN BASICA</h3>
+                <p class="lead">Soy un apasionado estudiante de ingeniería en sistemas computacionales en el Instituto Tecnológico de Zitácuaro, actualmente cursando el quinto semestre. Mi profundo interés en el mundo de la programación y la resolución de problemas me ha llevado a enfocarme especialmente en el desarrollo backend. Poseo una firme comprensión de los fundamentos de la programación y la arquitectura de software, así como un deseo innato de crear soluciones tecnológicas que marquen la diferencia.</p>
+              </div>
+            </div>
+      
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+              
+              <div class="card bg-glass py-5 my-9">
+                <h1 class="text-center">Contacto</h1>
+                <div class="card-body px-4 py-5 px-md-5">
+                  <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <label for="name">Name</label>
+                  </div>
+                  <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                    <label for="lastName">Last Name</label>
+                  </div>
+                  <div class="form-floating mb-4">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                  </div>
+                  <div class="form-floating mb-4">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Message</label>
+                  </div>
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+
+
+    
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="https://economipedia.com/wp-content/uploads/Proyecto-empresarial.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="assets\img\Captura de pantalla 2023-09-01 183947.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="assets\img\Captura de pantalla 2023-09-01 183831.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    
+
+  </div>
+
+  
