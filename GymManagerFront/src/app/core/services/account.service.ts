@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SignIn, User } from '../interfaces/user';
-import { ResponseModel } from '../interfaces/response-model';
+import { ResponseArrayModel, ResponseModel } from '../interfaces/response-model';
 import { SwalAlertService } from './swal-alert.service';
 
 @Injectable({
@@ -37,6 +37,12 @@ export class AccountService {
     
    }
     return throwError(() => new Error(errorMessage))
+  }
+
+  getUsers(){
+    let url: string = `${this.urlBase}api/User`
+    return this.http.get<ResponseArrayModel<User>>(url, this.httpOptions)
+    .pipe(catchError(this.errorHandler))
   }
 
   SignIn(request: SignIn): Observable<ResponseModel<any>>{
