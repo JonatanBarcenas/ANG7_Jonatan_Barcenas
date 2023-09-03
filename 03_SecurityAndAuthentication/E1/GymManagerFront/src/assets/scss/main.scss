@@ -1,0 +1,17 @@
+@import "./node_modules/bootstrap/scss/bootstrap";
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "./node_modules/bootstrap/scss/grid";
+@import "./node_modules/bootstrap/scss/navbar";
+@import "./node_modules/bootstrap/scss/forms";
+
+.bg-custom-blue-800{
+    background-color: $blue-800;
+}
+
+.bg-custom-teal-700{
+    background-color: $teal-700;
+    font-size: x-large;
+    font-style: normal;
+}
