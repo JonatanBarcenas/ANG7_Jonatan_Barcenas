@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router,RouterStateSnapshot, UrlTree} from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
@@ -8,7 +9,7 @@ import { environment } from 'src/app/environments/environment';
 })
 export class HasSessionGuard implements CanActivate {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cookie: CookieService) {
 
   }
 
@@ -16,10 +17,18 @@ export class HasSessionGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean  | UrlTree {
       
-      if(!environment.hasSession){
+      const session = this.cookie.get('session');
+      let dataUser;
+      if(!!session){
+        dataUser  = JSON.parse(atob(session != undefined ? session : ''));
+      }
+      if(!dataUser?.hasSession){
         this.router.navigate(['/sign-in']);
       }
-      return environment.hasSession;
+      
+      return !!dataUser?.hasSession;
   }
+
+
 
 }
