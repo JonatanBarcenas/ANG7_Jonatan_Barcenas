@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, _MatTableDataSource } from '@angular/material/table';
@@ -17,10 +18,13 @@ export class UsersComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  display : string = "none";
+  rowSelected: User | undefined;
 
 
   constructor(
-    private accountService:AccountService
+    private accountService:AccountService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -40,5 +44,52 @@ export class UsersComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openModal(row:User){
+    this.rowSelected = row
+  }
+
+  
+
+  onCloseHandled(){
+   this.rowSelected = undefined;
+  }
+  animal:string | undefined;
+  name:string | undefined;
+
+  openDialog(row:User){
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe((result:any) => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+  
+
+  
+}
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'userDialogBoorame.html'
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

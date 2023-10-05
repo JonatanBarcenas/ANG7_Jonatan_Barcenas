@@ -2,18 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
-import { UsersComponent } from './users.component';
+import { DialogOverviewExampleDialog, UsersComponent } from './users.component';
 import { MaterialModule } from 'src/material.module';
+import { UserEditorModule } from 'src/app/components/userEditor/user-editor/user-editor.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    DialogOverviewExampleDialog,
+    
+
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    MaterialModule
+    MaterialModule,
+    UserEditorModule,
+    FormsModule
   ]
 })
 export class UsersModule { }
